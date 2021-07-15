@@ -3,7 +3,7 @@ package com.company;
 import java.math.BigInteger;
 
 public class MillerRabin {
-    private BigInteger k;
+    private BigInteger k=BigInteger.ZERO;
     private BigInteger m;
     private BigInteger prime;
 
@@ -33,7 +33,7 @@ public class MillerRabin {
         BigInteger s = prime.subtract(BigInteger.ONE);
         while (s.mod(two).equals(BigInteger.ZERO)) {
             s = s.divide(two);
-            k.add(one);
+            k=k.add(one);
         }
         m=s;
     }
