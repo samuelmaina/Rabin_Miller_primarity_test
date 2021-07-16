@@ -4,16 +4,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 public class MillerRabinTest {
     @Test
-    public  void shouldFindKandM(){
-        BigInteger prime=  BigInteger.valueOf(53);
-        BigInteger expectedK= BigInteger.TWO;
-        BigInteger expectedM= BigInteger.valueOf(13);
-        MillerRabin mr= new MillerRabin(prime);
-        mr.findKandM();
-        Assertions.assertEquals(expectedK,mr.getK());
-        Assertions.assertEquals(expectedM,mr.getM());
+    public  void shoudFindKandQ(){
+        BigInteger num= BigInteger.valueOf(53);
+        ArrayList kAndQ= MillerRabin.generateKandQ(num);
+        int k= (int) kAndQ.get(0);
+        BigInteger q= (BigInteger) kAndQ.get(1);
+        Assertions.assertEquals(2,k);
+        Assertions.assertEquals(BigInteger.valueOf(13),q);
+
     }
+
+
+
 }
