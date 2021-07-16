@@ -1,40 +1,30 @@
 package com.company;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MillerRabin {
-    private BigInteger k=BigInteger.ZERO;
-    private BigInteger m;
-    private BigInteger prime;
+    private static final BigInteger ZERO = BigInteger.ZERO;
+    private static final BigInteger ONE = BigInteger.ONE;
+    private static final BigInteger TWO = new BigInteger("2");
+    private static final BigInteger THREE = new BigInteger("3");
 
-    public void setK(BigInteger k) {
-        this.k = k;
-    }
 
-    public void setM(BigInteger m) {
-        this.m = m;
-    }
-
-    public BigInteger getK() {
-        return k;
-    }
-
-    public BigInteger getM() {
-        return m;
-    }
-
-    public MillerRabin(BigInteger prime) {
-        this.prime = prime;
-    }
-
-    public void findKandM() {
-        BigInteger two = BigInteger.TWO;
-        BigInteger one= BigInteger.ONE;
-        BigInteger s = prime.subtract(BigInteger.ONE);
-        while (s.mod(two).equals(BigInteger.ZERO)) {
-            s = s.divide(two);
-            k=k.add(one);
+    public static ArrayList generateKandQ(BigInteger num){
+        int k;
+        BigInteger q;
+        q = num.subtract(ONE);
+        k = 0;
+        while (q.mod(TWO).equals(ZERO)) {
+            k++;
+            q = q.divide(TWO);
         }
-        m=s;
+        ArrayList kAndQ= new ArrayList();
+        kAndQ.add(k);
+        kAndQ.add(q);
+        return kAndQ;
     }
+
+
 }
