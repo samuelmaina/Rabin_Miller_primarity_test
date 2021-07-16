@@ -13,9 +13,29 @@ public class MillerRabinTest {
         ArrayList kAndQ= MillerRabin.generateKandQ(num);
         int k= (int) kAndQ.get(0);
         BigInteger q= (BigInteger) kAndQ.get(1);
-        Assertions.assertEquals(2,k);
-        Assertions.assertEquals(BigInteger.valueOf(13),q);
+        ensureBigIntsEqual(q,BigInteger.valueOf(13));
 
+    }
+    @Test
+    public  void shouldGenerateBigIntInTheRange(){
+        BigInteger lowerLimit= BigInteger.valueOf(20);
+        BigInteger upperLimit= BigInteger.valueOf(50);
+        BigInteger generated= MillerRabin.generateBigIntIntheRange(lowerLimit,upperLimit);
+        assertTrue(ensureGreaterThanOrEqual(generated, lowerLimit));
+        assertTrue(ensureLessThanOrEqual(generated,upperLimit));
+    }
+
+    private boolean ensureGreaterThanOrEqual(BigInteger greater, BigInteger less) {
+        return greater.compareTo(less) >= 0;
+    }
+    private boolean ensureLessThanOrEqual(BigInteger less, BigInteger greater) {
+        return less.compareTo(greater)<=0;
+    }
+    private void ensureBigIntsEqual( BigInteger expected, BigInteger actual){
+        Assertions.assertTrue(expected.equals(actual));
+    }
+    private void assertTrue(boolean predicate){
+        Assertions.assertTrue(predicate);
     }
 
 
